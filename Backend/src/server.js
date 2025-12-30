@@ -19,9 +19,7 @@ app.use(express.json());
 const allowedOrigin = "https://purple-merit-assignment-chi.vercel.app";
 app.use(cors({
   origin: allowedOrigin,
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 
