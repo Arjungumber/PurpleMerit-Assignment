@@ -1,8 +1,7 @@
 const express = require("express");
 const {
     getAllUsers,
-    activateUser,
-    deactivateUser,
+    updateUserStatus,
 } = require("../controllers/admin.controller");
 
 const authMiddleware = require("../middleware/auth.Middleware");
@@ -13,7 +12,7 @@ router.use(authMiddleware);
 router.use(adminOnly);
 
 router.get("/users", getAllUsers);
-router.put("/users/:id/activate", activateUser);
-router.put("/users/:id/deactivate", deactivateUser);
+router.put("/users/:id/:action", updateUserStatus);
+
 
 module.exports = router;

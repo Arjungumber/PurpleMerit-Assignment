@@ -26,14 +26,23 @@ const getAllUsers = async (req, res) => {
     } catch (error) {
         res.status(500).json({
         success: false,
-        message: "Server error",
+        message: error.message,
         });
     }
 };
 
-const activateUser = async (req, res) => {
+const updateUserStatus = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id);
+        const { id, action } = req.params;
+
+        if (!["activate", "deactivate"].includes(action)) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid action",
+        });
+        }
+
+        const user = await User.findById(id).select("-password");
 
         if (!user) {
         return res.status(404).json({
@@ -42,50 +51,24 @@ const activateUser = async (req, res) => {
         });
         }
 
-        user.status = "active";
+        user.status = action === "activate" ? "active" : "inactive";
         await user.save();
 
         res.status(200).json({
         success: true,
-        message: "User activated successfully",
+        message: `User ${action}d successfully`,
+        user,
         });
     } catch (error) {
         res.status(500).json({
         success: false,
-        message: "Server error",
+        message: error.message,
         });
     }
 };
 
-
-const deactivateUser = async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-
-        if (!user) {
-        return res.status(404).json({
-            success: false,
-            message: "User not found",
-        });
-        }
-
-        user.status = "inactive";
-        await user.save();
-
-        res.status(200).json({
-        success: true,
-        message: "User deactivated successfully",
-        });
-    } catch (error) {
-        res.status(500).json({
-        success: false,
-        message: "Server error",
-        });
-    }
-};
 
 module.exports = {
     getAllUsers,
-    activateUser,
-    deactivateUser,
+    updateUserStatus
 };

@@ -26,7 +26,6 @@ const updateMyProfile = async (req, res) => {
             message: 'Full name and email are required',
         });
         }
-
         const emailExists = await User.findOne({
         email,
         _id: { $ne: req.user.id },
@@ -58,7 +57,7 @@ const updateMyProfile = async (req, res) => {
     } catch (error) {
         res.status(500).json({
         success: false,
-        message: 'Server error',
+        message: error.message,
         });
     }
 };

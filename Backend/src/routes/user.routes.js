@@ -4,9 +4,10 @@ const {
     updateMyProfile,
     changePassword,
 } = require("../controllers/user.controller");
+const authMiddleware = require("../middleware/auth.Middleware");
 
 const router = express.Router();
-
+router.use(authMiddleware);
 
 router.get("/me", getMyProfile);
 router.put("/me", updateMyProfile);
