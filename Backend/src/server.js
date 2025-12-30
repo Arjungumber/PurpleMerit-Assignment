@@ -13,7 +13,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: "https://purplemerit-assignment-one.vercel.app",
+        origin: "https://purple-merit-assignment-chi.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true, 
     })
