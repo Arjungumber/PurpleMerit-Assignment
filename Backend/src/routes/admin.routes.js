@@ -4,7 +4,7 @@ const {
     updateUserStatus,
 } = require("../controllers/admin.controller");
 
-const authMiddleware = require("../middleware/auth.Middleware");
+const authMiddleware = require("../middleware/auth.middleware");
 const adminOnly = require("../middleware/role.middleware");
 const router = express.Router();
 
