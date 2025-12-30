@@ -11,13 +11,20 @@ connectDB();
 
 const app = express();
 
-app.use(
-    cors({
-        origin: "https://purple-merit-assignment-chi.vercel.app",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true, 
-    })
-);
+app.use(cors({
+    origin: "https://purple-merit-assignment-chi.vercel.app",
+    methods: ["GET","POST","PUT","DELETE"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+app.options("*", cors({
+    origin: "https://purple-merit-assignment-chi.vercel.app",
+    methods: ["GET","POST","PUT","DELETE"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
