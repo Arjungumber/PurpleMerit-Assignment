@@ -1,6 +1,6 @@
 # PurpleaMerit Assignment
 
-# Employee/Task Tracker System
+# User Management System
 
 This project is a Full-Stack User Management System built as part of an assignment submission. It includes authentication, role-based access control, and admin user management, with a clean UI and secure backend APIs.The application is split into separate frontend and backend deployments and is fully deployed on Vercel, following real-world production practices.
 ---
